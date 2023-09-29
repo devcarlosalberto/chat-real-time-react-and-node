@@ -44,10 +44,13 @@ export const ChatMessages = styled.div`
 	gap: 0.8rem;
 
 	max-height: 100%;
-	overflow: scroll;
+
+	overflow-y: scroll;
 `;
 
 export const MessageReceived = styled.div`
+	max-width: 100%;
+
 	font-size: 1.5rem;
 	font-weight: lighter;
 	color: ${({ theme }) => theme.COLORS.TEXT_WHITE};
@@ -58,6 +61,8 @@ export const MessageReceived = styled.div`
 	background-color: ${({ theme }) => theme.COLORS.BG_MESSAGES_RECEIVED};
 
 	border-radius: 2rem;
+
+	overflow-wrap: break-word;
 
 	> p span {
 		font-weight: normal;
@@ -76,6 +81,8 @@ export const MessageReceived = styled.div`
 `;
 
 export const MessageSent = styled.div`
+	max-width: 100%;
+
 	font-size: 1.5rem;
 	font-weight: lighter;
 	color: ${({ theme }) => theme.COLORS.TEXT_WHITE};
@@ -88,6 +95,8 @@ export const MessageSent = styled.div`
 	background-color: ${({ theme }) => theme.COLORS.BG_MESSAGES_SENT};
 
 	border-radius: 2rem;
+
+	overflow-wrap: break-word;
 
 	> p span {
 		font-weight: normal;
