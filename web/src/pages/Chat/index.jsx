@@ -1,4 +1,6 @@
 import { useRef, useState, useEffect } from "react";
+import { ToastContainer, toast, Zoom } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import {
 	Container,
@@ -13,6 +15,18 @@ import { useAuth } from "../../hooks/auth";
 
 export function Chat() {
 	const { user, socket } = useAuth();
+
+	const notify = (text) =>
+		toast.info(text, {
+			position: "top-right",
+			autoClose: 2000,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: false,
+			draggable: true,
+			transition: Zoom,
+			theme: "dark",
+		});
 
 	const bottomRef = useRef();
 	const messageRef = useRef();
@@ -43,8 +57,15 @@ export function Chat() {
 		socket.on("receive_message", (data) => {
 			setMessageList((prevState) => [...prevState, data]);
 		});
-
 		return () => socket.off("receive_message");
+	}, [socket]);
+
+	useEffect(() => {
+		socket.on("new_user", (data) => {
+			if (data.userId === socket.id) return;
+			notify(`${data.username} entrou no chat.`);
+		});
+		return () => socket.off("new_user");
 	}, [socket]);
 
 	useEffect(() => {
@@ -53,6 +74,7 @@ export function Chat() {
 
 	return (
 		<Container>
+			<ToastContainer />
 			<Top>
 				<div>
 					<h1>Chat</h1>
