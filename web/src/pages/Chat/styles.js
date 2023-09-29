@@ -59,8 +59,19 @@ export const MessageReceived = styled.div`
 
 	border-radius: 2rem;
 
-	span {
+	> p span {
 		font-weight: normal;
+	}
+
+	> span {
+		display: block;
+
+		margin-top: 0.4rem;
+
+		font-size: 1.2rem;
+		text-align: left;
+
+		opacity: 0.4;
 	}
 `;
 
@@ -78,8 +89,19 @@ export const MessageSent = styled.div`
 
 	border-radius: 2rem;
 
-	span {
+	> p span {
 		font-weight: normal;
+	}
+
+	> span {
+		display: block;
+
+		margin-top: 0.4rem;
+
+		font-size: 1.2rem;
+		text-align: left;
+
+		opacity: 0.4;
 	}
 `;
 

@@ -2,6 +2,11 @@ import { useRef, useState, useEffect } from "react";
 import { ToastContainer, toast, Zoom } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import { getUserTimeZone } from "../../utils/getUserTimeZone";
+import { convertTimestamp } from "../../utils/convertTimestamp";
+
+import { useAuth } from "../../hooks/auth";
+
 import {
 	Container,
 	Top,
@@ -10,8 +15,6 @@ import {
 	MessageSent,
 	Bottom,
 } from "./styles";
-
-import { useAuth } from "../../hooks/auth";
 
 export function Chat() {
 	const { user, socket } = useAuth();
@@ -91,6 +94,12 @@ export function Chat() {
 						{message.authorId === socket.id ? (
 							<MessageSent>
 								<p>{message.text}</p>
+								<span>
+									{convertTimestamp(
+										message.timestamp,
+										getUserTimeZone()
+									)}
+								</span>
 							</MessageSent>
 						) : (
 							<MessageReceived>
@@ -98,6 +107,12 @@ export function Chat() {
 									<span>{message.author}:</span>{" "}
 									{message.text}
 								</p>
+								<span>
+									{convertTimestamp(
+										message.timestamp,
+										getUserTimeZone()
+									)}
+								</span>
 							</MessageReceived>
 						)}
 					</div>
