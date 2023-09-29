@@ -11,16 +11,18 @@ Using the socket.io library was developed a live chat creating the interface wit
 - Real-time conversation;
 - Group conversations;
 - Username choice;
+- Real-time notifications when new user join in chat;
 
 
 ## 🚀 Technologies
 
-Thats project has utilized following technologies:
+Thats project has utilized following technologies and libraryes:
 - Node
 - React
 - ContextAPI
 - Styled-Components
 - Socket.io
+- React-Toastify
 
 
 ## 🔧 Installation
