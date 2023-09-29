@@ -3,20 +3,14 @@ const app = require("express")();
 const server = require("http").createServer(app);
 const io = require("socket.io")(server, {
 	cors: {
-		origin: process.env.HOST,
+		origin: "*",
 	},
 });
 
 io.on("connection", (socket) => {
-	console.log("User connected!", socket.id);
-
-	// eslint-disable-next-line no-unused-vars
-	socket.on("disconnect", (reason) => {
-		console.log("User disconected!", socket.id);
-	});
-
 	socket.on("set_username", (username) => {
 		socket.data.username = username;
+		io.emit("new_user", { username, userId: socket.id });
 	});
 
 	socket.on("message", (text) => {
