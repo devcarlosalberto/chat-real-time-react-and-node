@@ -12,8 +12,14 @@ function AuthProvider({ children }) {
 		setData({ username });
 	}
 
+	async function signOut() {
+		setData({});
+		socket.disconnect();
+		setSocket(null);
+	}
+
 	return (
-		<AuthContext.Provider value={{ signIn, socket, user: data }}>
+		<AuthContext.Provider value={{ signIn, signOut, socket, user: data }}>
 			{children}
 		</AuthContext.Provider>
 	);
