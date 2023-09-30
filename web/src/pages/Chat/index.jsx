@@ -72,23 +72,29 @@ export function Chat() {
 	}, [socket]);
 
 	useEffect(() => {
-		scrollDown();
-	}, [messageList]);
-
-	useEffect(() => {
 		const heartbeatInterval = setInterval(() => {
-			socket.emit("heartbeat");
-		}, 3000);
-
-		socket.on("disconnect", () => {
-			signOut();
-		});
+			if (!socket.connected) {
+				signOut();
+			} else {
+				socket.emit("heartbeat");
+			}
+		}, 1000);
 
 		return () => {
 			clearInterval(heartbeatInterval);
-			socket.disconnect();
 		};
 	}, []);
+
+	useEffect(() => {
+		socket.on("disconnect", () => {
+			signOut();
+		});
+		return () => {};
+	}, [socket]);
+
+	useEffect(() => {
+		scrollDown();
+	}, [messageList]);
 
 	return (
 		<Container>
