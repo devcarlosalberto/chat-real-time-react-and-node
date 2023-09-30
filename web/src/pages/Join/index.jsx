@@ -17,7 +17,8 @@ export function Join() {
 
 		if (!username.trim()) return;
 
-		const socket = await io.connect("http://localhost:3333");
+		// const socket = await io.connect("http://localhost:3333");
+		const socket = await io.connect("https://chatrealtimereactandnode-api.onrender.com");
 		socket.emit("set_username", username);
 		signIn({ username, socket });
 	};
