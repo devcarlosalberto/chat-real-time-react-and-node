@@ -17,7 +17,7 @@ import {
 } from "./styles";
 
 export function Chat() {
-	const { user, socket } = useAuth();
+	const { user, signOut, socket } = useAuth();
 
 	const notify = (text) =>
 		toast.info(text, {
@@ -74,6 +74,20 @@ export function Chat() {
 	useEffect(() => {
 		scrollDown();
 	}, [messageList]);
+
+	useEffect(() => {
+		const heartbeatInterval = setInterval(() => {
+			socket.emit("heartbeat");
+		}, 3000);
+
+		socket.on("disconnect", () => {
+			signOut();
+		});
+
+		return () => {
+			clearInterval(hearbeatInterval);
+		};
+	}, []);
 
 	return (
 		<Container>
