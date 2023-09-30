@@ -86,6 +86,7 @@ export function Chat() {
 
 		return () => {
 			clearInterval(hearbeatInterval);
+			socket.disconnect();
 		};
 	}, []);
 
