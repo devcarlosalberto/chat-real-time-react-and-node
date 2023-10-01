@@ -41,7 +41,7 @@ For Interface:
   npm install
 ```
 
-It is necessary for react to use port 5173 because the socket.io CORS in the API is configured to receive only requests from http://localhost:5173, change this if you are going to use this code in production. And also that the API runs on port 3333 because the interface will try to connect to the socket at the address http://localhost:3333.
+That the API runs on port 3333 because the interface will try to connect to the socket at the address http://localhost:3333.
 
 After you have installed the dependencies and are aware of the required settings, run the ```npm run dev``` command (you need to use two command terminals) in each folder (/api and /web) so that you can activate the React interface and also the API.
 ## 🔗 Links
